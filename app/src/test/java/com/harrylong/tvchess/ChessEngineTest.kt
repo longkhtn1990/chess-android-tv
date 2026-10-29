@@ -887,4 +887,45 @@ class ChessEngineTest {
         assertTrue("Tượng được đi dọc tia ghim tới c3", Position(5, 2) in bishopMoves)
         assertTrue("Tượng được ăn quân Tượng đen đang ghim ở b4", Position(4, 1) in bishopMoves)
     }
+
+    @Test
+    fun kingSelection_avoidsAutoJumpIntoCastlingSquare() {
+        var state = ChessEngine.createInitialState()
+        // 1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5
+        val seq = listOf("e2" to "e4", "e7" to "e5", "g1" to "f3", "b8" to "c6", "f1" to "c4", "f8" to "c5")
+        for ((f, t) in seq) {
+            val from = Position.fromAlgebraic(f)!!
+            val to = Position.fromAlgebraic(t)!!
+            val mv = ChessEngine.getLegalMovesForPiece(state, from).first { it.to == to }
+            state = ChessEngine.applyMove(state, mv)
+        }
+
+        // Kiểm tra tại thế cờ này, Vua Trắng ở e1 có nước nhập thành O-O tới g1
+        val e1 = Position.fromAlgebraic("e1")!!
+        val kingMoves = ChessEngine.getLegalMovesForPiece(state, e1)
+        val castleMove = kingMoves.firstOrNull { it.isKingsideCastle }
+        assertNotNull("Thế cờ phải có nước nhập thành", castleMove)
+
+        // Logic preferredTarget mới cho Vua: phải ưu tiên ô không phải Nhập thành
+        val nonCastleTargets = kingMoves.filter { !it.isKingsideCastle && !it.isQueensideCastle }.map { it.to }
+        val preferred = nonCastleTargets.firstOrNull() ?: kingMoves.first().to
+        assertNotEquals("Vua không được tự động nhảy con trỏ vào ô Nhập Thành g1", Position.fromAlgebraic("g1"), preferred)
+    }
+
+    @Test
+    fun chessAI_concurrentInvocations_remainConsistent() {
+        val s = ChessEngine.createInitialState()
+        val pool = java.util.concurrent.Executors.newFixedThreadPool(3)
+        val futures = (1..6).map {
+            pool.submit<ChessMove?> {
+                ChessAI.findBestMove(s, Difficulty.HARD)
+            }
+        }
+        for (f in futures) {
+            val mv = f.get(5, java.util.concurrent.TimeUnit.SECONDS)
+            assertNotNull(mv)
+            assertTrue(ChessEngine.isStrictFideLegalMove(s, mv!!))
+        }
+        pool.shutdown()
+    }
 }

@@ -522,13 +522,23 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                                 val forwardDir = if (chosenPiece.color == PieceColor.WHITE) -1 else 1
                                 targetMoves.minByOrNull { (it.row - cursorPos.row) * forwardDir } ?: targetMoves.first()
                             }
+                            PieceType.KING -> {
+                                // Vua: Ưu tiên các ô đi 1 bước bình thường, tránh auto-jump vào ô Nhập thành gây bất ngờ cho người chơi
+                                val nonCastleTargets = legalForPiece.filter { !it.isKingsideCastle && !it.isQueensideCastle }.map { it.to }
+                                nonCastleTargets.firstOrNull() ?: targetMoves.first()
+                            }
                             else -> targetMoves.first()
                         }
                         cursorPos = preferredTarget
 
                         Log.d("TVCHESS_GAMEPLAY", "Piece selected at $selectedPiecePos, cursor advanced to $cursorPos")
                         botMood = BotMood.SURPRISED
-                        botSpeechText = "${chosenPiece.type.kidFriendlyName} đã sẵn sàng! Bấm A để đi tới đây, hoặc bấm mũi tên chọn ô khác nhé!"
+                        val hasCastleMove = legalForPiece.any { it.isKingsideCastle || it.isQueensideCastle }
+                        botSpeechText = if (hasCastleMove) {
+                            "Đức Vua sẵn sàng! Có cả ô Nhập Thành 🛡️ bảo vệ Vua nữa đó!"
+                        } else {
+                            "${chosenPiece.type.kidFriendlyName} đã sẵn sàng! Bấm A để đi tới đây, hoặc bấm mũi tên chọn ô khác nhé!"
+                        }
                         TvSoundManager.playSelect()
                         TvSoundManager.speakPieceSelection(context, chosenPiece.type)
                     }
@@ -630,9 +640,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                         cursorPos = nextPos
                         val isCap = currentState.pieceAt(nextPos) != null
                         val isTarget = targetSquares.contains(nextPos)
-                        botMood = if (isCap) BotMood.SURPRISED else BotMood.IDLE_HAPPY
+                        val isCastle = activeLegalMoves.any { it.to == nextPos && (it.isKingsideCastle || it.isQueensideCastle) }
+                        botMood = if (isCap && isTarget) BotMood.SURPRISED else BotMood.IDLE_HAPPY
                         botSpeechText = when {
                             nextPos == selectedPiecePos -> "Quân đang chọn (Bấm A để hủy chọn)"
+                            isCastle -> "Tuyệt chiêu Nhập Thành 🛡️! Vua và Xe đổi chỗ bảo vệ thành trì! Bấm A để đi!"
                             isTarget && isCap -> "Ối! Ô đó bắt được quân! Bấm A để ăn nhé!"
                             isTarget -> "Ô xanh lá hợp lệ! Bấm A để đi tới đây!"
                             else -> "Ô này không đi được, Đậu chọn ô xanh lá nhé!"
@@ -652,9 +664,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                         cursorPos = nextPos
                         val isCap = currentState.pieceAt(nextPos) != null
                         val isTarget = targetSquares.contains(nextPos)
+                        val isCastle = activeLegalMoves.any { it.to == nextPos && (it.isKingsideCastle || it.isQueensideCastle) }
                         botMood = if (isCap && isTarget) BotMood.SURPRISED else BotMood.IDLE_HAPPY
                         botSpeechText = when {
                             nextPos == selectedPiecePos -> "Quân đang chọn (Bấm B để hủy chọn)"
+                            isCastle -> "Tuyệt chiêu Nhập Thành 🛡️! Vua và Xe đổi chỗ bảo vệ thành trì! Bấm A để đi!"
                             isTarget && isCap -> "Ối! Ô đó bắt được quân! Bấm A để ăn nhé!"
                             isTarget -> "Ô xanh lá hợp lệ! Bấm A để đi tới đây!"
                             else -> "Bấm A để chọn ô này!"
@@ -1005,5 +1019,27 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             }
             else -> false
         }
+    }
+
+    // =========================================================================
+    // QUẢN LÝ VÒNG ĐỜI (LIFECYCLE) - TRIỆT TIÊU HOÀN TOÀN TÁC VỤ CHẠY NGẦM
+    // =========================================================================
+
+    fun onAppBackgrounded() {
+        idleJob?.cancel()
+        TvSoundManager.stopAll()
+    }
+
+    fun onAppForegrounded() {
+        if (isPlayerTurn && !isAiThinking) {
+            restartIdleTimer()
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        aiJob?.cancel()
+        idleJob?.cancel()
+        TvSoundManager.stopAll()
     }
 }

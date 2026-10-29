@@ -163,6 +163,7 @@ object ChessAI {
 
     private val transpositionTable = Array(TT_SIZE) { TTEntry() }
     private val killerMoves = Array(64) { arrayOfNulls<ChessMove>(2) }
+    private val aiLock = Any()
 
     private fun clearTranspositionTable() {
         for (i in 0 until TT_SIZE) {
@@ -344,7 +345,7 @@ object ChessAI {
         return findBestMove(state, difficulty, profile.timeLimitMs)
     }
 
-    internal fun findBestMove(state: GameState, difficulty: Difficulty, timeLimitMs: Long): ChessMove? {
+    internal fun findBestMove(state: GameState, difficulty: Difficulty, timeLimitMs: Long): ChessMove? = synchronized(aiLock) {
         val legalMoves = ChessEngine.getLegalMoves(state)
         if (legalMoves.isEmpty()) return null
         if (legalMoves.size == 1) return legalMoves.first()
@@ -504,7 +505,7 @@ object ChessAI {
                 if (context.isAborted) break
             }
 
-            return bestMoveOverall
+            bestMoveOverall
         }
     }
 

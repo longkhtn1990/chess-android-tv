@@ -1,14 +1,14 @@
 # 👑 ĐẬU HỌC CỜ VUA - KIDS 4K EDITION
 ### Game Cờ Vua Đồ Họa 4K & Hoạt Ảnh 60fps Dành Riêng Cho Bé Đậu Trên Android TV & Thiết Bị Di Động
 
-[![Version](https://img.shields.io/badge/Release-v2.0.0-orange?logo=github&style=flat)](https://github.com/longkhtn1990/chess-android-tv/releases/tag/v2.0.0)
+[![Version](https://img.shields.io/badge/Release-v2.0.1-orange?logo=github&style=flat)](https://github.com/longkhtn1990/chess-android-tv/releases/tag/v2.0.1)
 [![Platform](https://img.shields.io/badge/Platform-Android%20TV%20%7C%20Google%20TV%20%7C%20Mobile-blue?logo=android)](https://www.android.com/tv/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple?logo=kotlin)](https://kotlinlang.org/)
 [![Compose](https://img.shields.io/badge/Jetpack-Compose-brightgreen?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![Display](https://img.shields.io/badge/Display-4K%20UHD%20%7C%2060fps-gold)](https://developer.android.com/tv)
 [![License](https://img.shields.io/badge/License-MIT-success)](LICENSE)
 
-[![Download APK v2.0.0](https://img.shields.io/badge/⬇️%20Download%20APK-v2.0.0%20Release%20(11%20MB)-success?style=for-the-badge&logo=android)](https://github.com/longkhtn1990/chess-android-tv/releases/download/v2.0.0/Dau-Hoc-Co-Vua-v2.0.0-Release.apk)
+[![Download APK v2.0.1](https://img.shields.io/badge/⬇️%20Download%20APK-v2.0.1%20Release%20(11%20MB)-success?style=for-the-badge&logo=android)](https://github.com/longkhtn1990/chess-android-tv/releases/download/v2.0.1/Dau-Hoc-Co-Vua-v2.0.1-Release.apk)
 
 Ứng dụng **Học & Chơi Cờ Vua thông minh, tương tác cao**, được thiết kế chuyên biệt cho trẻ em trên màn hình lớn **Android TV / Google TV 4K** (tối ưu hóa phần cứng cho **Xiaomi Mi Box S 4K Gen 3**, tay cầm chơi game **Dareu H101X**, **Remote Bluetooth Xiaomi** và các thiết bị di động Android).
 
@@ -16,17 +16,24 @@
 
 ---
 
-## 🆕 CÓ GÌ MỚI TRONG BẢN PHÁT HÀNH V2.0.0
-- 🚀 **Tối ưu hóa ProGuard / R8 & Resource Shrinking**: Giảm dung lượng file cài đặt từ 19 MB xuống chỉ còn **11 MB**, tốc độ khởi chạy nhanh hơn 40%, mượt mà trên cả các dòng TV Box cấu hình cơ bản.
-- 🏷️ **Cập nhật nhận diện phiên bản chính thức**: Hiển thị nhãn bản quyền và phiên bản `v2.0 • Harry (longkhtn1990@gmail.com)` tinh tế ở góc dưới màn hình chính.
-- 📱 **Hỗ trợ thích ứng đa màn hình toàn diện**: Tự động nhận diện thiết bị (`DeviceProfile`) chuyển đổi linh hoạt giữa giao diện Android TV 16:9 4K và giao diện Điện thoại / Máy tính bảng (xoay ngang / dọc thích ứng).
-- 🔊 **Chuẩn hóa EBU R128 & Audio Ducking**: Tự động cân bằng độ lớn âm lượng câu thoại tiếng Việt giọng nữ miền Nam trẻ em đạt chuẩn `-16 LUFS`, tự động hạ nhạc nền khi giọng nói cất lên.
-- 🎮 **Tương thích Android 14 / 15 & API 35/36**: Nâng cấp Target SDK lên 35 và Compile SDK 36, hỗ trợ đầy đủ các tay cầm Bluetooth và 2.4G hiện đại.
+## 🆕 CÓ GÌ MỚI TRONG BẢN PHÁT HÀNH V2.0.1
+- 🔋 **Khắc phục triệt để lỗi chạy ngầm & Tối ưu hóa bộ nhớ thiết bị TV**:
+  - Tự động ngắt toàn bộ coroutine timer (đếm giờ nhắc nhở idle 26s), dừng các tác vụ tính toán AI và tạm dừng nhạc nền / âm thanh ngay khi người dùng nhấn nút `HOME` hoặc chuyển ứng dụng.
+  - Khi thoát ứng dụng từ Trang chủ, toàn bộ tài nguyên âm thanh phần cứng (`SoundPool`, `TextToSpeech`, `MediaPlayer`) được giải phóng sạch sẽ và kết thúc tiến trình triệt để, đưa mức tiêu thụ CPU về `0%` và giải phóng đến **150 MB RAM** cho tivi.
+- 🛡️ **Cải tiến vượt trội trải nghiệm nước Nhập thành (Castling)**:
+  - Loại bỏ hoàn toàn hiện tượng con trỏ tự động nhảy vào ô Nhập thành khi chọn Vua, tránh trường hợp người chơi bấm nhầm ngoài ý muốn.
+  - Hiển thị trực quan ô Nhập thành với đường viền kép vàng kim cùng **biểu tượng Khiên bảo vệ 🛡️** độc quyền trên cả chế độ 2D và 3D.
+  - Tinh chỉnh lời thoại tương tác của Quái thú hướng dẫn rõ ràng nguyên lý Nhập thành đổi chỗ Vua và Xe để bảo vệ thành trì.
+  - Nâng cấp hoạt ảnh trượt mượt mà 2 pha (Staggered Animation): Đức Vua lướt sang 2 ô trước, Xe pháo đài lướt sau che chắn, loại bỏ hoàn toàn cảm giác va chạm cắt chéo thị giác.
+- 🎯 **Chính xác hóa tọa độ chạm trên bàn cờ 3D (3D Touch Parallax Fix)**:
+  - Bổ sung vùng nhận diện thể tích chiều cao 3D của quân cờ, đảm bảo người dùng chạm hoặc click chuột vào bất kỳ phần nào trên thân hoặc vương miện của quân Vua đều được nhận đúng vị trí ô cờ.
+- ⚡ **Tăng cường an toàn đa luồng cho ChessAI Engine**:
+  - Đồng bộ hóa thread-safe cho bộ nhớ đệm `transpositionTable` và `killerMoves`, triệt tiêu hoàn toàn xung đột luồng khi vừa bật "Bóng đèn mách nước" vừa đến lượt AI quái thú suy nghĩ.
 
 ---
 
 ## 📑 MỤC LỤC
-1. [Điểm Mới Trong Bản v2.0.0](#-có-gì-mới-trong-bản-phát-hành-v200)
+1. [Điểm Mới Trong Bản v2.0.1](#-có-gì-mới-trong-bản-phát-hành-v201)
 2. [Điểm Nổi Bật & Tính Năng Đột Phá](#-điểm-nổi-bật--tính-năng-đột-phá)
 3. [Bộ Sưu Tập Hình Ảnh Giao Diện (Screenshots)](#-bộ-sưu-tập-hình-ảnh-giao-diện)
 4. [Sơ Đồ Điều Khiển (Tay Cầm & Remote TV)](#-sơ-đồ-điều-khiển-tay-cầm--remote-tv)
@@ -145,7 +152,7 @@ Hệ thống hỗ trợ 2 cơ chế điều hướng thông minh:
 ## 🚀 HƯỚNG DẪN CÀI ĐẶT CHI TIẾT
 
 Ứng dụng cung cấp sẵn các gói cài đặt APK chính thức (tải từ mục [Releases](https://github.com/longkhtn1990/chess-android-tv/releases/latest)):
-- 📦 **`Dau-Hoc-Co-Vua-v2.0.0-Release.apk`** (**Bản tối ưu 11 MB** cho mọi thiết bị Android TV, Google TV, Tablet & Phone)
+- 📦 **`Dau-Hoc-Co-Vua-v2.0.1-Release.apk`** (**Bản tối ưu 11 MB** cho mọi thiết bị Android TV, Google TV, Tablet & Phone)
 
 ### Cách 1: Cài đặt siêu tốc qua Wi-Fi bằng ADB (Khuyên Dùng)
 
@@ -169,7 +176,7 @@ adb connect 192.168.1.113:5555
 # dùng Remote tích chọn "Always allow from this computer" và bấm OK/Allow.
 
 # 2. Cài đặt file APK trực tiếp vào TV
-adb install -r Dau-Hoc-Co-Vua-v2.0.0-Release.apk
+adb install -r Dau-Hoc-Co-Vua-v2.0.1-Release.apk
 
 # 3. Khởi chạy ứng dụng ngay lập tức
 adb shell am start -n com.harrylong.tvchess/.MainActivity
@@ -181,12 +188,12 @@ adb shell am start -n com.harrylong.tvchess/.MainActivity
 
 Thích hợp khi TV không cùng mạng Wi-Fi với máy tính hoặc muốn cài đặt offline:
 
-1. Tải file **`Dau-Hoc-Co-Vua-v2.0.0-Release.apk`** từ [GitHub Releases](https://github.com/longkhtn1990/chess-android-tv/releases/latest).
+1. Tải file **`Dau-Hoc-Co-Vua-v2.0.1-Release.apk`** từ [GitHub Releases](https://github.com/longkhtn1990/chess-android-tv/releases/latest).
 2. Định dạng USB ở định dạng **FAT32** hoặc **exFAT**.
-3. Chép file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` vào thư mục gốc của USB.
+3. Chép file `Dau-Hoc-Co-Vua-v2.0.1-Release.apk` vào thư mục gốc của USB.
 4. Cắm USB vào cổng USB trên **Xiaomi Mi Box S** (hoặc Android TV).
 5. Mở ứng dụng quản lý file trên TV (ví dụ: **X-plore File Manager**, **File Commander** hoặc **Media Explorer** có sẵn).
-6. Trỏ tới USB, chọn file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` và bấm **Cài đặt**.
+6. Trỏ tới USB, chọn file `Dau-Hoc-Co-Vua-v2.0.1-Release.apk` và bấm **Cài đặt**.
    *(Nếu TV hỏi quyền cài đặt từ nguồn không xác định, bấm Cho phép rồi tiếp tục)*.
 7. Cài đặt hoàn tất, biểu tượng **Đậu Học Cờ Vua** sẽ xuất hiện trên màn hình chính Android TV!
 
@@ -198,7 +205,7 @@ Nếu bạn có điện thoại Android hoặc máy tính kết nối cùng Wi-F
 
 1. Cài ứng dụng **Send Files to TV (SFTV)** trên cả TV và điện thoại / máy tính từ Google Play Store.
 2. Mở ứng dụng SFTV trên TV và chọn **RECEIVE**.
-3. Mở SFTV trên điện thoại / máy tính, chọn **SEND**, trỏ tới file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` và chọn TV của bạn.
+3. Mở SFTV trên điện thoại / máy tính, chọn **SEND**, trỏ tới file `Dau-Hoc-Co-Vua-v2.0.1-Release.apk` và chọn TV của bạn.
 4. Sau khi file tải xong trên TV, dùng một trình mở file (như **X-plore** hoặc **Downloader**) chọn file trong thư mục `Download` để tiến hành cài đặt.
 
 ---

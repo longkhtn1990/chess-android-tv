@@ -552,9 +552,9 @@ object TvSoundManager {
     }
 
     /**
-     * Giải phóng tài nguyên âm thanh khi thoát ứng dụng.
+     * Dừng ngay lập tức các âm thanh giọng nói và hiệu ứng đang phát (khi app chuyển vào nền onPause/onStop).
      */
-    fun release() {
+    fun stopAll() {
         synchronized(voiceLock) {
             try {
                 activeVoicePlayer?.let { player ->
@@ -564,6 +564,19 @@ object TvSoundManager {
             activeVoicePlayer = null
             updateVoicePlaying(false)
         }
+        try {
+            soundPool?.autoPause()
+        } catch (_: Throwable) {}
+        try {
+            tts?.stop()
+        } catch (_: Throwable) {}
+    }
+
+    /**
+     * Giải phóng tài nguyên âm thanh khi thoát ứng dụng.
+     */
+    fun release() {
+        stopAll()
         try {
             soundPool?.release()
         } catch (_: Throwable) {}

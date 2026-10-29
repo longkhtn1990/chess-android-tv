@@ -177,6 +177,27 @@ fun TvChessScreen(
         }
     }
 
+    // Quản lý Lifecycle - Ngừng ngay các tác vụ đếm giờ / phát âm thanh ngầm khi Activity bị che hoặc chuyển vào nền
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            when (event) {
+                androidx.lifecycle.Lifecycle.Event.ON_STOP,
+                androidx.lifecycle.Lifecycle.Event.ON_PAUSE -> {
+                    viewModel.onAppBackgrounded()
+                }
+                androidx.lifecycle.Lifecycle.Event.ON_RESUME -> {
+                    viewModel.onAppForegrounded()
+                }
+                else -> {}
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     // Rung phản hồi (Haptic feedback) xúc giác khi chọn quân, ăn quân hoặc bị chiếu
     LaunchedEffect(viewModel.selectedPiecePos) {
         if (viewModel.selectedPiecePos != null) {
@@ -1569,8 +1590,31 @@ private fun ChessBoardView(
                     val validMove = validTargetMap[pos]
                     if (focusZone == FocusZone.MOVE_SELECTION && validMove != null) {
                         val isCapture = validMove.capturedPiece != null || validMove.isEnPassant
+                        val isCastle = validMove.isKingsideCastle || validMove.isQueensideCastle
                         val center = Offset(topLeft.x + sqSize / 2f, topLeft.y + sqSize / 2f)
-                        if (isCapture) {
+                        if (isCastle) {
+                            // Ô NHẬP THÀNH: Viền kép màu vàng hoàng gia & biểu tượng khiên bảo vệ 🛡️
+                            drawCircle(
+                                color = GoldAccent.copy(alpha = 0.95f),
+                                radius = sqSize * 0.38f,
+                                center = center,
+                                style = Stroke(width = sqSize * 0.06f)
+                            )
+                            drawCircle(
+                                color = CyanFocus.copy(alpha = 0.30f),
+                                radius = sqSize * 0.28f,
+                                center = center
+                            )
+                            val shieldStyle = TextStyle(
+                                fontSize = (sqSize * 0.30f).toSp(),
+                                textAlign = TextAlign.Center
+                            )
+                            val shieldLayout = textMeasurer.measure("🛡️", shieldStyle)
+                            drawText(
+                                textLayoutResult = shieldLayout,
+                                topLeft = Offset(center.x - shieldLayout.size.width / 2f, center.y - shieldLayout.size.height / 2f)
+                            )
+                        } else if (isCapture) {
                             drawCircle(
                                 color = CrimsonDanger.copy(alpha = 0.88f),
                                 radius = sqSize * 0.43f,

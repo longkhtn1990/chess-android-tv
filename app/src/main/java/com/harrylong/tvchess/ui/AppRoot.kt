@@ -457,7 +457,7 @@ fun HomeScreen(
 
         // Góc nhỏ dưới màn hình hiển thị version và tác giả
         Text(
-            text = "v2.0 • Harry (longkhtn1990@gmail.com)",
+            text = "v2.0.1 • Harry (longkhtn1990@gmail.com)",
             fontSize = if (isPhone || isShortScreen) 9.sp else 11.sp,
             color = Color(0xFF64748B),
             modifier = Modifier

@@ -240,8 +240,13 @@ object BoardAnimationEffects {
         val endX = toCol * squareSize
         val endY = toRow * squareSize
 
-        val currX = startX + (endX - startX) * p
-        val currY = startY + (endY - startY) * p
+        // Với nước Nhập thành: Vua di chuyển trước (0..70%), Xe di chuyển theo sau (25%..100%)
+        // để tạo hiệu ứng nhịp nhàng, loại bỏ hoàn toàn hiện tượng 2 quân đâm chéo cắt nhau
+        val isCastle = move.isKingsideCastle || move.isQueensideCastle
+        val kingP = if (isCastle) (p / 0.70f).coerceIn(0f, 1f) else p
+
+        val currX = startX + (endX - startX) * kingP
+        val currY = startY + (endY - startY) * kingP
 
         val isKnight = move.piece.type == PieceType.KNIGHT
 
@@ -284,8 +289,9 @@ object BoardAnimationEffects {
             val rookEndX = rookScreenEndCol * squareSize
             val rookEndY = rookScreenEndRow * squareSize
 
-            val rookCurrentX = rookStartX + (rookEndX - rookStartX) * p
-            val rookCurrentY = rookStartY + (rookEndY - rookStartY) * p
+            val rookP = ((p - 0.25f) / 0.75f).coerceIn(0f, 1f)
+            val rookCurrentX = rookStartX + (rookEndX - rookStartX) * rookP
+            val rookCurrentY = rookStartY + (rookEndY - rookStartY) * rookP
 
             val rookPiece = Piece(PieceType.ROOK, move.piece.color)
 

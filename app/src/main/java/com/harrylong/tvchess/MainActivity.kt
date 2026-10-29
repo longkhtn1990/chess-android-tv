@@ -12,6 +12,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.harrylong.tvchess.audio.BgmPlayer
+import com.harrylong.tvchess.audio.TvSoundManager
 import com.harrylong.tvchess.input.DareuGamepadController
 import com.harrylong.tvchess.input.GamepadDeviceDetector
 import com.harrylong.tvchess.input.GamepadEventBus
@@ -47,7 +48,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AppRoot(
-                onExitApp = { finish() }
+                onExitApp = {
+                    TvSoundManager.release()
+                    BgmPlayer.release()
+                    finishAffinity()
+                }
             )
         }
     }
@@ -60,12 +65,20 @@ class MainActivity : ComponentActivity() {
 
     override fun onPause() {
         super.onPause()
+        TvSoundManager.stopAll()
+        BgmPlayer.pause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        TvSoundManager.stopAll()
         BgmPlayer.pause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         inputManager?.unregisterInputDeviceListener(inputDeviceListener)
+        TvSoundManager.release()
         BgmPlayer.release()
     }
 

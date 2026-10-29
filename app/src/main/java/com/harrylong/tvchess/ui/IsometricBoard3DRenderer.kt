@@ -209,12 +209,34 @@ object IsometricBoard3DRenderer {
 
     /**
      * Xác định ô cờ tương ứng khi người dùng chạm vào toạ độ (x, y) trên màn hình 2D.
+     * Có tính đến chiều cao 3D (bounding box) của quân cờ để khi chạm vào đầu/thân quân cờ
+     * (đặc biệt là Đức Vua) vẫn nhận chính xác ô cờ mà không bị lệch sang ô phía trên.
      */
     fun findSquareAtPoint(
         point: Offset,
         layout: PerspectiveLayout,
         isBoardFlipped: Boolean
     ): Position? {
+        // Pha 1: Ưu tiên phát hiện chạm vào thân/đầu quân cờ 3D (từ hàng gần nhất screenRow=7 lùi về 0)
+        for (screenRow in 7 downTo 0) {
+            for (screenCol in 0..7) {
+                val quad = layout.getQuad(screenRow, screenCol)
+                val ds = quad.depthScale
+                val pieceWidth = 24f * ds
+                val pieceHeight = 65f * ds
+                val minX = quad.anchor.x - pieceWidth
+                val maxX = quad.anchor.x + pieceWidth
+                val minY = quad.anchor.y - pieceHeight
+                val maxY = quad.anchor.y + 4f * ds
+                if (point.x in minX..maxX && point.y in minY..maxY) {
+                    val boardRow = if (isBoardFlipped) 7 - screenRow else screenRow
+                    val boardCol = if (isBoardFlipped) 7 - screenCol else screenCol
+                    return Position(boardRow, boardCol)
+                }
+            }
+        }
+
+        // Pha 2: Fallback kiểm tra mặt sàn phẳng bàn cờ
         for (screenRow in 0..7) {
             for (screenCol in 0..7) {
                 val quad = layout.getQuad(screenRow, screenCol)
@@ -285,7 +307,8 @@ object IsometricBoard3DRenderer {
             val screenCol = if (isBoardFlipped) 7 - targetPos.col else targetPos.col
             val quad = layout.getQuad(screenRow, screenCol)
             val isCapture = targetMove.capturedPiece != null || targetMove.isEnPassant
-            drawGreenTargetBox3D(quad, isCapture, pulseAlpha)
+            val isCastle = targetMove.isKingsideCastle || targetMove.isQueensideCastle
+            drawGreenTargetBox3D(quad, isCapture, isCastle, pulseAlpha)
         }
 
         // 8. BỘ QUÂN CỜ GỖ TIỆN TRÒN 3D VỚI Z-SORTING CHUẨN XÁC THEO TỪNG HÀNG
@@ -891,10 +914,24 @@ object IsometricBoard3DRenderer {
 
     /**
      * KHUNG VIỀN NƯỚC ĐI XANH LÁ 3D (GREEN TARGET BOX)
+     * Ô Nhập thành dùng màu vàng kim nổi bật để phân biệt với nước đi thông thường.
      */
-    fun DrawScope.drawGreenTargetBox3D(quad: QuadSquare3D, isCapture: Boolean, pulseAlpha: Float = 1f) {
-        val greenColor = if (isCapture) Color(0xFFF97316) else Color(0xFF22C55E)
-        val greenHighlight = if (isCapture) Color(0xFFFED7AA) else Color(0xFF86EFAC)
+    fun DrawScope.drawGreenTargetBox3D(
+        quad: QuadSquare3D,
+        isCapture: Boolean,
+        isCastle: Boolean = false,
+        pulseAlpha: Float = 1f
+    ) {
+        val targetColor = when {
+            isCastle -> Color(0xFFFACC15) // Vàng kim ô Nhập thành
+            isCapture -> Color(0xFFF97316)
+            else -> Color(0xFF22C55E)
+        }
+        val targetHighlight = when {
+            isCastle -> Color(0xFFFEF08A)
+            isCapture -> Color(0xFFFED7AA)
+            else -> Color(0xFF86EFAC)
+        }
 
         val inset = 2.5f
         val q0 = Offset(quad.p0.x + inset, quad.p0.y + inset)
@@ -913,21 +950,21 @@ object IsometricBoard3DRenderer {
         // Quầng sáng lan tỏa mềm
         drawPath(
             path = boxPath,
-            color = greenColor.copy(alpha = 0.30f * pulseAlpha),
+            color = targetColor.copy(alpha = 0.30f * pulseAlpha),
             style = Stroke(width = 9f * quad.depthScale, join = StrokeJoin.Round)
         )
 
-        // Viền xanh lá hộp 3D dày
+        // Viền xanh lá / vàng hộp 3D dày
         val strokeWidth = 4.8f * quad.depthScale
         drawPath(
             path = boxPath,
-            color = greenColor,
+            color = targetColor,
             style = Stroke(width = strokeWidth, join = StrokeJoin.Round)
         )
 
         // Đường viền phản chiếu ánh sáng
         drawLine(
-            color = greenHighlight.copy(alpha = 0.85f * pulseAlpha),
+            color = targetHighlight.copy(alpha = 0.85f * pulseAlpha),
             start = q0,
             end = q1,
             strokeWidth = strokeWidth * 0.45f,
@@ -936,7 +973,7 @@ object IsometricBoard3DRenderer {
 
         if (isCapture) {
             drawCircle(
-                color = greenColor.copy(alpha = 0.75f),
+                color = targetColor.copy(alpha = 0.75f),
                 radius = 7f * quad.depthScale,
                 center = quad.center
             )
@@ -967,10 +1004,13 @@ object IsometricBoard3DRenderer {
             val qFrom = layout.getQuad(fromSR, fromSC)
             val qTo = layout.getQuad(toSR, toSC)
 
-            val currSRFloat = fromSR + (toSR - fromSR) * p
-            val currAnchorX = qFrom.anchor.x + (qTo.anchor.x - qFrom.anchor.x) * p
-            val currAnchorY = qFrom.anchor.y + (qTo.anchor.y - qFrom.anchor.y) * p
-            val currDepthScale = qFrom.depthScale + (qTo.depthScale - qFrom.depthScale) * p
+            val isCastle = animatingMove.isKingsideCastle || animatingMove.isQueensideCastle
+            val kingP = if (isCastle) (p / 0.70f).coerceIn(0f, 1f) else p
+
+            val currSRFloat = fromSR + (toSR - fromSR) * kingP
+            val currAnchorX = qFrom.anchor.x + (qTo.anchor.x - qFrom.anchor.x) * kingP
+            val currAnchorY = qFrom.anchor.y + (qTo.anchor.y - qFrom.anchor.y) * kingP
+            val currDepthScale = qFrom.depthScale + (qTo.depthScale - qFrom.depthScale) * kingP
 
             val isKnight = animatingMove.piece.type == PieceType.KNIGHT
             val hopFactor = sin(p * PI.toFloat()).coerceAtLeast(0f)
@@ -2033,9 +2073,11 @@ object IsometricBoard3DRenderer {
         val quadRookFrom = layout.getQuad(rookFromSR, rookFromSC)
         val quadRookTo = layout.getQuad(rookToSR, rookToSC)
 
-        val rookX = quadRookFrom.anchor.x + (quadRookTo.anchor.x - quadRookFrom.anchor.x) * progress
-        val rookY = quadRookFrom.anchor.y + (quadRookTo.anchor.y - quadRookFrom.anchor.y) * progress
-        val rookScale = quadRookFrom.depthScale + (quadRookTo.depthScale - quadRookFrom.depthScale) * progress
+        // Xe trượt theo sau Vua (25%..100% tiến trình) tạo cảm giác che chắn tự nhiên
+        val rookP = ((progress - 0.25f) / 0.75f).coerceIn(0f, 1f)
+        val rookX = quadRookFrom.anchor.x + (quadRookTo.anchor.x - quadRookFrom.anchor.x) * rookP
+        val rookY = quadRookFrom.anchor.y + (quadRookTo.anchor.y - quadRookFrom.anchor.y) * rookP
+        val rookScale = quadRookFrom.depthScale + (quadRookTo.depthScale - quadRookFrom.depthScale) * rookP
 
         drawSingleStauntonPiece3D(
             piece = Piece(PieceType.ROOK, move.piece.color),
