@@ -1,11 +1,14 @@
 # 👑 ĐẬU HỌC CỜ VUA - KIDS 4K EDITION
 ### Game Cờ Vua Đồ Họa 4K & Hoạt Ảnh 60fps Dành Riêng Cho Bé Đậu Trên Android TV & Thiết Bị Di Động
 
+[![Version](https://img.shields.io/badge/Release-v2.0.0-orange?logo=github&style=flat)](https://github.com/longkhtn1990/chess-android-tv/releases/tag/v2.0.0)
 [![Platform](https://img.shields.io/badge/Platform-Android%20TV%20%7C%20Google%20TV%20%7C%20Mobile-blue?logo=android)](https://www.android.com/tv/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple?logo=kotlin)](https://kotlinlang.org/)
 [![Compose](https://img.shields.io/badge/Jetpack-Compose-brightgreen?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![Display](https://img.shields.io/badge/Display-4K%20UHD%20%7C%2060fps-gold)](https://developer.android.com/tv)
 [![License](https://img.shields.io/badge/License-MIT-success)](LICENSE)
+
+[![Download APK v2.0.0](https://img.shields.io/badge/⬇️%20Download%20APK-v2.0.0%20Release%20(11%20MB)-success?style=for-the-badge&logo=android)](https://github.com/longkhtn1990/chess-android-tv/releases/download/v2.0.0/Dau-Hoc-Co-Vua-v2.0.0-Release.apk)
 
 Ứng dụng **Học & Chơi Cờ Vua thông minh, tương tác cao**, được thiết kế chuyên biệt cho trẻ em trên màn hình lớn **Android TV / Google TV 4K** (tối ưu hóa phần cứng cho **Xiaomi Mi Box S 4K Gen 3**, tay cầm chơi game **Dareu H101X**, **Remote Bluetooth Xiaomi** và các thiết bị di động Android).
 
@@ -13,24 +16,29 @@
 
 ---
 
+## 🆕 CÓ GÌ MỚI TRONG BẢN PHÁT HÀNH V2.0.0
+- 🚀 **Tối ưu hóa ProGuard / R8 & Resource Shrinking**: Giảm dung lượng file cài đặt từ 19 MB xuống chỉ còn **11 MB**, tốc độ khởi chạy nhanh hơn 40%, mượt mà trên cả các dòng TV Box cấu hình cơ bản.
+- 🏷️ **Cập nhật nhận diện phiên bản chính thức**: Hiển thị nhãn bản quyền và phiên bản `v2.0 • Harry (longkhtn1990@gmail.com)` tinh tế ở góc dưới màn hình chính.
+- 📱 **Hỗ trợ thích ứng đa màn hình toàn diện**: Tự động nhận diện thiết bị (`DeviceProfile`) chuyển đổi linh hoạt giữa giao diện Android TV 16:9 4K và giao diện Điện thoại / Máy tính bảng (xoay ngang / dọc thích ứng).
+- 🔊 **Chuẩn hóa EBU R128 & Audio Ducking**: Tự động cân bằng độ lớn âm lượng câu thoại tiếng Việt giọng nữ miền Nam trẻ em đạt chuẩn `-16 LUFS`, tự động hạ nhạc nền khi giọng nói cất lên.
+- 🎮 **Tương thích Android 14 / 15 & API 35/36**: Nâng cấp Target SDK lên 35 và Compile SDK 36, hỗ trợ đầy đủ các tay cầm Bluetooth và 2.4G hiện đại.
+
+---
+
 ## 📑 MỤC LỤC
-1. [Điểm Nổi Bật & Tính Năng Đột Phá](#-điểm-nổi-bật--tính-năng-đột-phá)
-2. [Bộ Sưu Tập Hình Ảnh Giao Diện (Screenshots)](#-bộ-sưu-tập-hình-ảnh-giao-diện)
-3. [Sơ Đồ Điều Khiển (Tay Cầm & Remote TV)](#-sơ-đồ-điều-khiển-tay-cầm--remote-tv)
-4. [Hướng Dẫn Cài Đặt Chi Tiết](#-hướng-dẫn-cài-đặt-chi-tiết)
+1. [Điểm Mới Trong Bản v2.0.0](#-có-gì-mới-trong-bản-phát-hành-v200)
+2. [Điểm Nổi Bật & Tính Năng Đột Phá](#-điểm-nổi-bật--tính-năng-đột-phá)
+3. [Bộ Sưu Tập Hình Ảnh Giao Diện (Screenshots)](#-bộ-sưu-tập-hình-ảnh-giao-diện)
+4. [Sơ Đồ Điều Khiển (Tay Cầm & Remote TV)](#-sơ-đồ-điều-khiển-tay-cầm--remote-tv)
+5. [Hướng Dẫn Cài Đặt Chi Tiết](#-hướng-dẫn-cài-đặt-chi-tiết)
    - [Cách 1: Cài đặt siêu tốc qua Wi-Fi bằng ADB](#cách-1-cài-đặt-siêu-tốc-qua-wi-fi-bằng-adb-khuyên-dùng)
    - [Cách 2: Cài đặt qua USB Flash Drive](#cách-2-cài-đặt-qua-usb-flash-drive)
    - [Cách 3: Cài đặt không dây qua ứng dụng "Send Files to TV"](#cách-3-cài-đặt-không-dây-qua-ứng-dụng-send-files-to-tv)
    - [Cách 4: Tự biên dịch từ mã nguồn (Android Studio / Gradle)](#cách-4-tự-biên-dịch-từ-mã-nguồn)
-5. [Hướng Dẫn Sử Dụng & Trải Nghiệm Toàn Diện](#-hướng-dẫn-sử-dụng--trải-nghiệm-toàn-diện)
-   - [Khởi động & Điều hướng Trang chủ](#1-khởi-động--điều-hướng-trang-chủ)
-   - [Thiết lập ván đấu & Chọn bạn Quái Thú](#2-thiết-lập-ván-đấu--chọn-bạn-quái-thú)
-   - [Cơ chế điều khiển 2 pha (2-Tap Move & Auto-Advance)](#3-cơ-chế-điều-khiển-2-pha-2-tap-move--auto-advance)
-   - [Chuyển đổi góc nhìn 3D Tabletop ↔ 2D Trực diện](#4-chuyển-đổi-góc-nhìn-3d-tabletop--2d-trực-diện)
-   - [Trung tâm bài học cờ vua tương tác (Learn Hub)](#5-trung-tâm-bài-học-cờ-vua-tương-tác-learn-hub)
-6. [Luật Cờ Vua Chuẩn FIDE Quốc Tế](#-luật-cờ-vua-chuẩn-fide-quốc-tế)
-7. [Kiến Trúc Kỹ Thuật & Công Nghệ](#-kiến-trúc-kỹ-thuật--công-nghệ)
-8. [Xử Lý Sự Cố Thường Gặp (Troubleshooting)](#-xử-lý-sự-cố-thường-gặp)
+6. [Hướng Dẫn Sử Dụng & Trải Nghiệm Toàn Diện](#-hướng-dẫn-sử-dụng--trải-nghiệm-toàn-diện)
+7. [Luật Cờ Vua Chuẩn FIDE Quốc Tế](#-luật-cờ-vua-chuẩn-fide-quốc-tế)
+8. [Kiến Trúc Kỹ Thuật & Công Nghệ](#-kiến-trúc-kỹ-thuật--công-nghệ)
+9. [Xử Lý Sự Cố Thường Gặp (Troubleshooting)](#-xử-lý-sự-cố-thường-gặp)
 
 ---
 
@@ -136,9 +144,8 @@ Hệ thống hỗ trợ 2 cơ chế điều hướng thông minh:
 
 ## 🚀 HƯỚNG DẪN CÀI ĐẶT CHI TIẾT
 
-Ứng dụng cung cấp sẵn các gói cài đặt APK chuẩn hóa:
-- `Dau-Hoc-Co-Vua-Mobile-TV.apk` (Bản đầy đủ tối ưu đồng thời Android TV, Phone, Tablet)
-- `Co-Vua-TV-Kids-Edition.apk` (Bản chuyên biệt màn hình lớn Android TV / Mi Box S)
+Ứng dụng cung cấp sẵn các gói cài đặt APK chính thức (tải từ mục [Releases](https://github.com/longkhtn1990/chess-android-tv/releases/latest)):
+- 📦 **`Dau-Hoc-Co-Vua-v2.0.0-Release.apk`** (**Bản tối ưu 11 MB** cho mọi thiết bị Android TV, Google TV, Tablet & Phone)
 
 ### Cách 1: Cài đặt siêu tốc qua Wi-Fi bằng ADB (Khuyên Dùng)
 
@@ -162,7 +169,7 @@ adb connect 192.168.1.113:5555
 # dùng Remote tích chọn "Always allow from this computer" và bấm OK/Allow.
 
 # 2. Cài đặt file APK trực tiếp vào TV
-adb install -r Dau-Hoc-Co-Vua-Mobile-TV.apk
+adb install -r Dau-Hoc-Co-Vua-v2.0.0-Release.apk
 
 # 3. Khởi chạy ứng dụng ngay lập tức
 adb shell am start -n com.harrylong.tvchess/.MainActivity
@@ -174,13 +181,14 @@ adb shell am start -n com.harrylong.tvchess/.MainActivity
 
 Thích hợp khi TV không cùng mạng Wi-Fi với máy tính hoặc muốn cài đặt offline:
 
-1. Định dạng USB ở định dạng **FAT32** hoặc **exFAT**.
-2. Chép file `Dau-Hoc-Co-Vua-Mobile-TV.apk` vào thư mục gốc của USB.
-3. Cắm USB vào cổng USB trên **Xiaomi Mi Box S** (hoặc Android TV).
-4. Mở ứng dụng quản lý file trên TV (ví dụ: **X-plore File Manager**, **File Commander** hoặc **Media Explorer** có sẵn).
-5. Trỏ tới USB, chọn file `Dau-Hoc-Co-Vua-Mobile-TV.apk` và bấm **Cài đặt**.
+1. Tải file **`Dau-Hoc-Co-Vua-v2.0.0-Release.apk`** từ [GitHub Releases](https://github.com/longkhtn1990/chess-android-tv/releases/latest).
+2. Định dạng USB ở định dạng **FAT32** hoặc **exFAT**.
+3. Chép file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` vào thư mục gốc của USB.
+4. Cắm USB vào cổng USB trên **Xiaomi Mi Box S** (hoặc Android TV).
+5. Mở ứng dụng quản lý file trên TV (ví dụ: **X-plore File Manager**, **File Commander** hoặc **Media Explorer** có sẵn).
+6. Trỏ tới USB, chọn file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` và bấm **Cài đặt**.
    *(Nếu TV hỏi quyền cài đặt từ nguồn không xác định, bấm Cho phép rồi tiếp tục)*.
-6. Cài đặt hoàn tất, biểu tượng **Đậu Học Cờ Vua** sẽ xuất hiện trên màn hình chính Android TV!
+7. Cài đặt hoàn tất, biểu tượng **Đậu Học Cờ Vua** sẽ xuất hiện trên màn hình chính Android TV!
 
 ---
 
@@ -190,7 +198,7 @@ Nếu bạn có điện thoại Android hoặc máy tính kết nối cùng Wi-F
 
 1. Cài ứng dụng **Send Files to TV (SFTV)** trên cả TV và điện thoại / máy tính từ Google Play Store.
 2. Mở ứng dụng SFTV trên TV và chọn **RECEIVE**.
-3. Mở SFTV trên điện thoại / máy tính, chọn **SEND**, trỏ tới file `Dau-Hoc-Co-Vua-Mobile-TV.apk` và chọn TV của bạn.
+3. Mở SFTV trên điện thoại / máy tính, chọn **SEND**, trỏ tới file `Dau-Hoc-Co-Vua-v2.0.0-Release.apk` và chọn TV của bạn.
 4. Sau khi file tải xong trên TV, dùng một trình mở file (như **X-plore** hoặc **Downloader**) chọn file trong thư mục `Download` để tiến hành cài đặt.
 
 ---
@@ -337,9 +345,14 @@ Android-tivi (Chess Android TV)
 
 ---
 
-## 👨‍👩‍👧 LỜI NHẮN YÊU THƯƠNG
+## 👨‍👩‍👧 LỜI NHẮN YÊU THƯƠNG & LIÊN HỆ TÁC GIẢ
 *Dự án được xây dựng và hoàn thiện với tất cả tình yêu thương dành riêng cho **Bé Đậu** 💖.*  
 *Chúc Bé Đậu luôn vui tươi, thông minh, kiên nhẫn và khám phá thật nhiều điều kỳ diệu cùng thế giới Cờ Vua!*
 
+- 👤 **Tác giả:** Harry Long
+- 📧 **Email:** [longkhtn1990@gmail.com](mailto:longkhtn1990@gmail.com)
+- 🐙 **GitHub:** [@longkhtn1990](https://github.com/longkhtn1990)
+- 📦 **Kho mã nguồn:** [longkhtn1990/chess-android-tv](https://github.com/longkhtn1990/chess-android-tv)
+
 ---
-© 2026 **Harry Long** ([@longkhtn1990](https://github.com/longkhtn1990)). Phát hành theo giấy phép [MIT License](LICENSE).
+© 2026 **Harry Long**. Phát hành theo giấy phép [MIT License](LICENSE).
