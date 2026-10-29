@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <!-- Nền không gian Hoàng Gia Huyền Diệu -->
+    <path
+        android:fillColor="#0A0F1D"
+        android:pathData="M0,0h320v180h-320z" />
+
+    <!-- Quầng sáng ấm áp tỏa từ trung tâm -->
+    <path
+        android:fillColor="#172554"
+        android:pathData="M160,90m-140,0a140,75 0 1,1 280,0a140,75 0 1,1 -280,0" />
+    <path
+        android:fillColor="#1E1B4B"
+        android:pathData="M160,90m-90,0a90,50 0 1,1 180,0a90,50 0 1,1 -180,0" />
+
+    <!-- Lưới bàn cờ hoàng gia chìm mờ ảo bên phải -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M220,15h20v20h-20zM260,15h20v20h-20zM240,35h20v20h-20zM280,35h20v20h-20zM220,55h20v20h-20zM260,55h20v20h-20zM240,75h20v20h-20zM280,75h20v20h-20zM220,95h20v20h-20zM260,95h20v20h-20zM240,115h20v20h-20zM280,115h20v20h-20zM220,135h20v20h-20zM260,135h20v20h-20z" />
+
+    <!-- Khung viền mạ vàng Hoàng Gia kép siêu sang trọng -->
+    <path
+        android:strokeColor="#78350F"
+        android:strokeWidth="3.5"
+        android:pathData="M6,6h308v168h-308z" />
+    <path
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="1.8"
+        android:pathData="M9,9h302v162h-302z" />
+    <!-- Góc nhấn hoa văn viền 4 góc -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M9,9l12,0l-12,12zM311,9l-12,0l12,12zM9,171l12,0l-12,-12zM311,171l-12,0l12,-12z" />
+
+    <!-- BÓNG ĐỔ DƯỚI CHÂN CÁC QUÂN CỜ HOÀNG GIA -->
+    <path
+        android:fillColor="#030712"
+        android:pathData="M40,148a32,10 0 1,0 64,0a32,10 0 1,0 -64,0" />
+    <path
+        android:fillColor="#030712"
+        android:pathData="M95,145a28,8 0 1,0 56,0a28,8 0 1,0 -56,0" />
+
+    <!-- QUÂN ĐỨC VUA HOÀNG GIA (KING) 3D bên trái -->
+    <!-- Chân đế Vua -->
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M45,145l6,-10h52l6,10z" />
+    <path
+        android:fillColor="#F5C542"
+        android:pathData="M48,143l5,-7h48l5,7z" />
+    <path
+        android:fillColor="#FEF3C7"
+        android:pathData="M54,138h46v3h-46z" />
+
+    <!-- Thân áo choàng Đức Vua -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M52,133c0,-14 6,-24 10,-34l-3,-18c0,-12 11,-16 23,-16s23,4 23,16l-3,18c4,10 10,20 10,34z" />
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M55,131c0,-13 5,-22 9,-32l-2,-16c0,-10 10,-14 20,-14s20,4 20,14l-2,16c4,10 9,19 9,32z" />
+    <!-- Ánh sáng 3D thân Vua -->
+    <path
+        android:fillColor="#FDE68A"
+        android:pathData="M60,126c0,-10 4,-18 7,-26l-1,-12c0,-6 7,-9 14,-9c-3,10 -5,22 -6,34c-1,4 -7,8 -14,13z" />
+
+    <!-- Đai thắt lưng ngọc quý hoàng đế -->
+    <path
+        android:fillColor="#92400E"
+        android:pathData="M58,104h38v8h-38z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M59,105h36v6h-36z" />
+    <!-- Viên ngọc Ruby đỏ rực rỡ trên thắt lưng -->
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M77,108m-3,0a3,3 0 1,1 6,0a3,3 0 1,1 -6,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M76,107m-1,0a1,1 0 1,1 2,0a1,1 0 1,1 -2,0" />
+
+    <!-- Thánh giá vàng uy nghiêm trên đỉnh vương miện Vua -->
+    <path
+        android:fillColor="#FBBF24"
+        android:strokeColor="#78350F"
+        android:strokeWidth="1.2"
+        android:pathData="M74,38h6v12h-6zM69,42h16v5h-16z" />
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M77,44.5m-1.5,0a1.5,1.5 0 1,1 3,0a1.5,1.5 0 1,1 -3,0" />
+
+    <!-- QUÂN MÃ HOÀNG GIA CHIBI (KNIGHT) đứng kề bên phải -->
+    <!-- Chân đế Mã -->
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M102,142l5,-8h40l5,8z" />
+    <path
+        android:fillColor="#F5C542"
+        android:pathData="M104,140l4,-6h38l4,6z" />
+
+    <!-- Thân và cổ Ngựa Chiến 3D -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M108,134c1,-18 7,-24 13,-30l-14,5l-3,-8c5,-10 14,-16 23,-22l5,7l6,-5c13,9 16,33 12,53z" />
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M110,132c1,-16 7,-22 12,-27l-12,4l-2,-6c5,-9 12,-14 20,-19l5,6l5,-4c11,8 14,29 10,46z" />
+    <!-- Mắt ngựa xanh ngọc -->
+    <path
+        android:fillColor="#1E3A8A"
+        android:pathData="M117,98m-3,0a3,3 0 1,1 6,0a3,3 0 1,1 -6,0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M116.5,97.5m-1.8,0a1.8,1.8 0 1,1 3.6,0a1.8,1.8 0 1,1 -3.6,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M116,96.8m-0.8,0a0.8,0.8 0 1,1 1.6,0a0.8,0.8 0 1,1 -1.6,0" />
+    <!-- Bờm ngựa lấp lánh -->
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M136,84c4,5 6,10 5,16c2,-2 4,-5 3,-9z" />
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M141,96c3,5 3,12 1,18c2,-4 3,-9 1,-13z" />
+
+    <!-- KHỐI BIỂU TƯỢNG VƯƠNG MIỆN & BẢNG TÊN BÊN PHẢI -->
+    <!-- Vương miện Hoàng Gia lớn rực rỡ ở phía trên -->
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M192,54l6,-22l14,14l18,-18l18,18l14,-14l6,22z" />
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M194,52l5,-19l13,12l18,-16l18,16l13,-12l5,19z" />
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M200,50l3,-13l9,8l18,-12l18,12l9,-8l3,13z" />
+    <!-- Viên ngọc đính trên 5 đỉnh vương miện lớn -->
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M198,32m-3,0a3,3 0 1,1 6,0a3,3 0 1,1 -6,0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M212,43m-2.5,0a2.5,2.5 0 1,1 5,0a2.5,2.5 0 1,1 -5,0" />
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M230,26m-4,0a4,4 0 1,1 8,0a4,4 0 1,1 -8,0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M248,43m-2.5,0a2.5,2.5 0 1,1 5,0a2.5,2.5 0 1,1 -5,0" />
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M262,32m-3,0a3,3 0 1,1 6,0a3,3 0 1,1 -6,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M229,24.5m-1.2,0a1.2,1.2 0 1,1 2.4,0a1.2,1.2 0 1,1 -2.4,0" />
+
+    <!-- Dải ruy băng mạ vàng sang trọng nâng đỡ tên thương hiệu -->
+    <path
+        android:fillColor="#78350F"
+        android:pathData="M172,66h116l6,14l-6,14h-116l-6,-14z" />
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M175,68h110l5,12l-5,12h-110l-5,-12z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M177,70h106l4,10l-4,10h-106l-4,-10z" />
+    <path
+        android:fillColor="#FEF3C7"
+        android:pathData="M182,72h96v2h-96zM182,86h96v2h-96z" />
+
+    <!-- Biểu tượng chữ nghệ thuật ĐẬU HỌC CỜ VUA (Dạng hình khối vương giả nổi bật) -->
+    <!-- Thanh chữ chính màu vàng kim đậm -->
+    <path
+        android:fillColor="#451A03"
+        android:pathData="M188,77h84v6h-84z" />
+    <path
+        android:fillColor="#FFFBEB"
+        android:pathData="M189,78h82v4h-82z" />
+
+    <!-- Thanh huy hiệu phụ 4K ANDROID TV -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M186,104h88v16h-88z" />
+    <path
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="1.2"
+        android:pathData="M186,104h88v16h-88z" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M192,111h18v2h-18zM216,111h24v2h-24zM246,111h22v2h-22z" />
+
+    <!-- 3 Ngôi sao danh vọng Hoàng Gia dưới chân banner -->
+    <!-- Ngôi sao giữa -->
+    <path
+        android:fillColor="#FDE047"
+        android:pathData="M230,126l2.5,5.5l5.5,1.5l-5.5,1.5l-2.5,5.5l-2.5,-5.5l-5.5,-1.5l5.5,-1.5z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M230,128l1.2,3.5l3.5,1l-3.5,1l-1.2,3.5l-1.2,-3.5l-3.5,-1l3.5,-1z" />
+    <!-- Ngôi sao trái -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M212,129l2,4l4,1.5l-4,1.5l-2,4l-2,-4l-4,-1.5l4,-1.5z" />
+    <!-- Ngôi sao phải -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M248,129l2,4l4,1.5l-4,1.5l-2,4l-2,-4l-4,-1.5l4,-1.5z" />
+
+    <!-- Các chùm sao lấp lánh trên bầu trời đêm -->
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M38,24l1.5,4.5l4.5,1.5l-4.5,1.5l-1.5,4.5l-1.5,-4.5l-4.5,-1.5l4.5,-1.5z" />
+    <path
+        android:fillColor="#FDE047"
+        android:pathData="M152,28l1.5,4l4,1.5l-4,1.5l-1.5,4l-1.5,-4l-4,-1.5l4,-1.5z" />
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M296,26l2,5l5,2l-5,2l-2,5l-2,-5l-5,-2l5,-2z" />
+    <path
+        android:fillColor="#FDE047"
+        android:pathData="M298,138l1.5,4l4,1.5l-4,1.5l-1.5,4l-1.5,-4l-4,-1.5l4,-1.5z" />
+</vector>

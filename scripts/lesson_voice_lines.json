@@ -1,0 +1,174 @@
+[
+  {
+    "key": "voice_lesson_board_intro_1",
+    "text": "Chào bé Đậu dễ thương! Bàn cờ vua có 64 ô vuông xinh xắn xen kẽ sáng và tối nè. Bốn ô ở giữa gọi là trung tâm nha!"
+  },
+  {
+    "key": "voice_lesson_board_intro_2",
+    "text": "Đậu nhìn nè, các ô nằm ngang gọi là Hàng, còn các ô chạy dọc từ trên xuống gọi là Cột nghen Đậu!"
+  },
+  {
+    "key": "voice_lesson_board_intro_3",
+    "text": "Đây là lúc hai đội xếp quân nè! Đội Trắng ở dưới, đội Đen ở trên, sẵn sàng cùng Đậu thi tài thiệt vui nha!"
+  },
+  {
+    "key": "voice_lesson_board_intro_4",
+    "text": "Đậu chạm vào 4 ô trung tâm nằm ngay chính giữa bàn cờ giúp mình nha!"
+  },
+  {
+    "key": "voice_lesson_pawn_1",
+    "text": "Lính Tốt luôn tiến thẳng về trước nha Đậu! Ở nước đầu tiên, Tốt có thể bước 1 ô hoặc nhảy liền 2 ô luôn đó!"
+  },
+  {
+    "key": "voice_lesson_pawn_2",
+    "text": "Lính Tốt đi thẳng nhưng lại ăn chéo 1 ô ở phía trước nghen Đậu! Thấy quân địch ở góc chéo là bắt liền nè!"
+  },
+  {
+    "key": "voice_lesson_pawn_3",
+    "text": "Đậu ơi, hãy giúp chú lính Tốt nhảy 2 ô tiến lên e4 thiệt dũng cảm nha!"
+  },
+  {
+    "key": "voice_lesson_pawn_4",
+    "text": "Có quân địch ở ô d4 kìa! Đậu cho Tốt ăn chéo để tiêu diệt đối phương nghen!"
+  },
+  {
+    "key": "voice_lesson_pawn_5",
+    "text": "Bé Đậu chọn một ô chéo để Lính Tốt ăn điểm ngôi sao nha!"
+  },
+  {
+    "key": "voice_lesson_rook_1",
+    "text": "Xe Pháo Đài chạy ngang và dọc bao xa cũng được hết trơn, miễn là không bị ai cản đường nha Đậu!"
+  },
+  {
+    "key": "voice_lesson_rook_2",
+    "text": "Xe không thể nhảy qua đầu quân khác được nha Đậu. Gặp quân địch thì Xe ăn luôn, còn quân mình thì phải dừng lại nè!"
+  },
+  {
+    "key": "voice_lesson_rook_3",
+    "text": "Đậu lái chú Xe phi thẳng một mạch từ ô a1 lên tận a8 cho mình xem nào!"
+  },
+  {
+    "key": "voice_lesson_rook_4",
+    "text": "Có một chú lính đứng cản đường ở e4! Đậu lái Xe chạy thẳng lên bắt quân nghen!"
+  },
+  {
+    "key": "voice_lesson_rook_5",
+    "text": "Bé Đậu điều khiển Xe chạy thẳng lên ô c5 ăn ngôi sao lấp lánh nghen!"
+  },
+  {
+    "key": "voice_lesson_bishop_1",
+    "text": "Quân Tượng lướt theo các đường chéo siêu nhanh luôn! Tượng đứng ô màu nào thì suốt đời chỉ đi ô màu đó thôi nha Đậu!"
+  },
+  {
+    "key": "voice_lesson_bishop_2",
+    "text": "Chú Tượng ở ô d4 đang ngắm các ô chéo nè! Đậu chạm vào các ô đường chéo mà Tượng có thể tới nghen!"
+  },
+  {
+    "key": "voice_lesson_bishop_3",
+    "text": "Mục tiêu ở tận ô b7 kìa Đậu ơi! Đậu cho Tượng lướt một đường chéo thật dài tới bắt quân nha!"
+  },
+  {
+    "key": "voice_lesson_knight_1",
+    "text": "Ngựa Chiến đi theo hình chữ L độc đáo nè: bước 2 ô thẳng rồi quẹo 1 ô! Nhảy chữ L thiệt là vui nha Đậu!"
+  },
+  {
+    "key": "voice_lesson_knight_2",
+    "text": "Đặc biệt nhất trần đời: chỉ có duy nhất Ngựa Chiến là nhảy qua đầu các quân khác được thôi đó Đậu, không sợ bị cản đường!"
+  },
+  {
+    "key": "voice_lesson_knight_3",
+    "text": "Phía trước có hàng rào lính, Đậu hãy điều khiển chú Ngựa nhảy qua đầu lên ô f3 nha!"
+  },
+  {
+    "key": "voice_lesson_knight_4",
+    "text": "Mục tiêu ở ô e5 kìa! Đậu cho Ngựa nhảy chữ L tới ăn gọn đối phương nghen!"
+  },
+  {
+    "key": "voice_lesson_queen_1",
+    "text": "Nữ Hoàng Hậu là quân mạnh nhất bàn cờ nè Đậu! Hậu vừa đi thẳng như Xe, vừa đi chéo như Tượng luôn, siêu cấp lợi hại!"
+  },
+  {
+    "key": "voice_lesson_queen_2",
+    "text": "Đậu cho Nữ Hoàng đi thẳng lên một bước để bắt chú lính đen ở e2 nha!"
+  },
+  {
+    "key": "voice_lesson_queen_3",
+    "text": "Giờ Nữ Hoàng lướt chéo sang ô b4 để bắt quân nè! Đậu ra tay giúp Nữ Hoàng nghen!"
+  },
+  {
+    "key": "voice_lesson_king_1",
+    "text": "Đức Vua là trái tim của cả ván cờ đó Đậu ơi! Vua đi được mọi hướng nhưng chỉ bước từng ô một thôi nha!"
+  },
+  {
+    "key": "voice_lesson_king_2",
+    "text": "Đức Vua không bao giờ được tự bước vào ô đang bị quân địch ngắm bắn đâu nha Đậu, nguy hiểm lắm đó!"
+  },
+  {
+    "key": "voice_lesson_king_3",
+    "text": "Xe địch đang ngắm Vua ở e1 kìa! Đậu dắt Đức Vua bước sang ô d1 an toàn nha!"
+  },
+  {
+    "key": "voice_lesson_special_moves_1",
+    "text": "Nhập thành là tuyệt chiêu duy nhất mà Vua và Xe đi cùng một lúc! Vua nhảy 2 ô về phía Xe để vào thành an toàn nghen Đậu!"
+  },
+  {
+    "key": "voice_lesson_special_moves_2",
+    "text": "Đậu chạm vào Đức Vua ở e1 rồi dắt Vua sang ô g1 để thực hiện Nhập Thành nghen!"
+  },
+  {
+    "key": "voice_lesson_special_moves_3",
+    "text": "Kỳ diệu chưa nè! Khi chú lính Tốt dũng cảm tiến tới hàng cuối cùng, Tốt sẽ được biến hình thành Nữ Hoàng quyền năng luôn!"
+  },
+  {
+    "key": "voice_lesson_special_moves_4",
+    "text": "Đậu cho Lính Tốt bước lên ô e8 và biến hình thành Nữ Hoàng rực rỡ nha!"
+  },
+  {
+    "key": "voice_lesson_check_1",
+    "text": "Khi quân địch tấn công thẳng vào Đức Vua, đó gọi là Chiếu Tướng! Lúc này Đậu phải giải cứu Đức Vua ngay nghen!"
+  },
+  {
+    "key": "voice_lesson_check_2",
+    "text": "Nhớ câu thần chú này nè Đậu ơi: 1 là Chạy Vua, 2 là Chặn đường, 3 là Ăn luôn quân chiếu! Dễ nhớ thiệt ha!"
+  },
+  {
+    "key": "voice_lesson_check_3",
+    "text": "Vua đang bị chiếu ở e1! Đậu hãy dắt Vua Chạy lên ô d2 an toàn nha!"
+  },
+  {
+    "key": "voice_lesson_check_4",
+    "text": "Cách thứ 2 nè: Đậu lấy Tượng ở f3 Chặn đường chiếu ở ô e2 để che chở cho Vua nha!"
+  },
+  {
+    "key": "voice_lesson_check_5",
+    "text": "Cách thứ 3 siêu ngầu: Đậu cho Ngựa ở g3 Ăn luôn con Xe đang chiếu ở h1 nha!"
+  },
+  {
+    "key": "voice_lesson_checkmate_1",
+    "text": "Khi Đức Vua bị chiếu mà không còn đường Chạy, không có ai Chặn và không thể Ăn được, đó là Chiếu Hết! Ta giành chiến thắng rực rỡ nha Đậu!"
+  },
+  {
+    "key": "voice_lesson_checkmate_2",
+    "text": "Đậu cho Nữ Hoàng ở f3 bay lên ô f7 ăn quân chiếu hết để giành cúp vô địch nha!"
+  },
+  {
+    "key": "voice_lesson_checkmate_3",
+    "text": "Đậu lái chú Xe ở a1 phi thẳng lên a8 chiếu hết Đức Vua đối phương nghen!"
+  },
+  {
+    "key": "voice_lesson_draw_1",
+    "text": "Nếu Đức Vua không bị chiếu nhưng cả đội không còn bất kỳ nước đi nào hợp lệ, ván cờ sẽ Hoà nha Đậu! Hai bên bắt tay nhau nè!"
+  },
+  {
+    "key": "voice_lesson_draw_2",
+    "text": "Khi trên bàn chỉ còn 2 Đức Vua hoặc không đủ quân để chiếu hết, trọng tài cũng tuyên bố Hoà cờ luôn đó Đậu!"
+  },
+  {
+    "key": "voice_lesson_draw_3",
+    "text": "Chỉ còn 2 Đức Vua thôi nè! Đậu bước Vua lên một bước để hoàn thành ván cờ hoà vui vẻ nha!"
+  },
+  {
+    "key": "voice_lesson_graduation_1",
+    "text": "Hoan hô bé Đậu xuất sắc quá! Đậu đã học hết 12 bài học cờ vua và trở thành Kiện Tướng Nhí rồi nè! Giờ mình cùng thử sức đấu một ván thật với bạn Khủng Long Nhí nha!"
+  }
+]

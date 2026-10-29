@@ -1,0 +1,23 @@
+# Gradle & Build files
+.gradle/
+build/
+app/build/
+
+# IDE files
+.idea/
+.kotlin/
+.android/
+local.properties
+*.iml
+.DS_Store
+
+# Heavy tools and models
+tools/
+
+# Large archives and binaries
+*.apk
+*.tgz
+*.zip
+BanSaoLuu-TV-*/
+.agents/
+

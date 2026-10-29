@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Nền không gian Hoàng Gia sang trọng -->
+    <path
+        android:fillColor="#0B1120"
+        android:pathData="M0,0h108v108h-108z" />
+
+    <!-- Lớp lưới bàn cờ 3D chìm nghệ thuật -->
+    <path
+        android:fillColor="#151E33"
+        android:pathData="M10,10h22v22h-22zM54,10h22v22h-22zM32,32h22v22h-22zM76,32h22v22h-22zM10,54h22v22h-22zM54,54h22v22h-22zM32,76h22v22h-22zM76,76h22v22h-22z" />
+
+    <!-- Ánh hào quang tỏa tròn sau lưng quân cờ -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M54,54m-42,0a42,42 0 1,1 84,0a42,42 0 1,1 -84,0" />
+    <path
+        android:fillColor="#312E81"
+        android:pathData="M54,54m-34,0a34,34 0 1,1 68,0a34,34 0 1,1 -68,0" />
+
+    <!-- Khung viền mạ vàng hoàng gia đôi -->
+    <path
+        android:strokeColor="#78350F"
+        android:strokeWidth="2.5"
+        android:pathData="M6,6h96v96h-96z" />
+    <path
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="1.5"
+        android:pathData="M8,8h92v92h-92z" />
+
+    <!-- Bóng đổ 3D dưới chân đế quân cờ -->
+    <path
+        android:fillColor="#030712"
+        android:pathData="M24,84a30,9 0 1,0 60,0a30,9 0 1,0 -60,0" />
+
+    <!-- Chân đế quân cờ Hoàng Gia 3D -->
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M28,82l4,-6h44l4,6z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M30,81l3,-4h42l3,4z" />
+    <path
+        android:fillColor="#FEF3C7"
+        android:pathData="M34,78h40v2h-40z" />
+
+    <!-- Ngựa Chiến Chibi Dũng Mãnh (Knight) phong cách 3D Vector Hoàng Gia -->
+    <!-- Thân và cổ ngựa đổ bóng khối -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M35,76c2,-18 10,-24 16,-30l-16,5l-3,-8c6,-10 16,-16 26,-22l6,7l7,-5c15,9 18,33 14,53z" />
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M37,75c2,-16 9,-22 15,-27l-13,4l-2,-6c5,-9 14,-14 23,-19l5,6l6,-4c12,8 15,29 11,46z" />
+
+    <!-- Điểm sáng khối thân ngựa (Highlight 3D) -->
+    <path
+        android:fillColor="#FDE68A"
+        android:pathData="M48,32c-3,4 -7,8 -9,14l9,-3c0,0 2,-6 5,-9z" />
+    <path
+        android:fillColor="#FEF3C7"
+        android:pathData="M62,34c-4,3 -6,9 -7,16c3,-5 6,-10 8,-14z" />
+
+    <!-- Bờm ngựa hoàng gia uốn lượn sắc sảo -->
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M65,22c6,5 8,11 7,18c3,-3 5,-7 4,-12z" />
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M71,36c4,6 4,14 2,21c3,-5 4,-11 2,-16z" />
+
+    <!-- Mắt ngựa tinh anh lấp lánh ngọc xanh -->
+    <path
+        android:fillColor="#1E3A8A"
+        android:pathData="M45,38m-3.5,0a3.5,3.5 0 1,1 7,0a3.5,3.5 0 1,1 -7,0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M44.5,37.5m-2,0a2,2 0 1,1 4,0a2,2 0 1,1 -4,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44,36.5m-1,0a1,1 0 1,1 2,0a1,1 0 1,1 -2,0" />
+
+    <!-- Vương miện nhỏ trên đầu chú ngựa tượng trưng cho bé Đậu lên ngôi -->
+    <path
+        android:fillColor="#DC2626"
+        android:pathData="M52,19l3,6l4,-5l4,5l3,-6l2,9h-18z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:strokeColor="#B45309"
+        android:strokeWidth="0.8"
+        android:pathData="M52,19l3,6l4,-5l4,5l3,-6l2,9h-18z" />
+    <!-- Viên ngọc hồng ngọc trên vương miện -->
+    <path
+        android:fillColor="#EF4444"
+        android:pathData="M59,25m-1.5,0a1.5,1.5 0 1,1 3,0a1.5,1.5 0 1,1 -3,0" />
+
+    <!-- Các ngôi sao vàng 4 cánh lấp lánh (Twinkle Stars) -->
+    <!-- Ngôi sao lớn góc trên trái -->
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M22,24l2,6l6,2l-6,2l-2,6l-2,-6l-6,-2l6,-2z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M22,25.5l1,4.5l4.5,1l-4.5,1l-1,4.5l-1,-4.5l-4.5,-1l4.5,-1z" />
+
+    <!-- Ngôi sao nhỏ góc trên phải -->
+    <path
+        android:fillColor="#FDE047"
+        android:pathData="M86,18l1.5,4.5l4.5,1.5l-4.5,1.5l-1.5,4.5l-1.5,-4.5l-4.5,-1.5l4.5,-1.5z" />
+
+    <!-- Ngôi sao lấp lánh góc dưới phải -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M88,68l1.5,4l4,1.5l-4,1.5l-1.5,4l-1.5,-4l-4,-1.5l4,-1.5z" />
+</vector>
