@@ -433,7 +433,7 @@ object IsometricBoard3DRenderer {
         val inBR = Offset(cx + layout.innerBottomWidth * 0.5f, layout.innerBottomY)
         val inBL = Offset(cx - layout.innerBottomWidth * 0.5f, layout.innerBottomY)
 
-        val lipThickness = h * 0.055f
+        val lipThickness = h * 0.068f
 
         // 1. GỜ CẠNH ĐỨNG PHÍA TRƯỚC (3D Front Wooden Lip)
         val lipPath = Path().apply {
@@ -563,6 +563,7 @@ object IsometricBoard3DRenderer {
 
     /**
      * In rõ chữ cái tọa độ A..H, số tọa độ 1..8 và khắc chữ lên gờ cạnh đứng phía trước.
+     * Cỡ chữ lớn, nét đậm siêu nét (FontWeight.Black) kèm bóng chạm khắc 3D nổi bật trên viền gỗ.
      */
     private fun DrawScope.drawBoardCoordinatesAndLabels(
         layout: PerspectiveLayout,
@@ -573,21 +574,50 @@ object IsometricBoard3DRenderer {
         lastMove: ChessMove?,
         lipThickness: Float
     ) {
-        val coordColor = Color(0xFF2C180A)
+        val coordColor = Color(0xFF241104)
+        val engraveLight = Color(0xFFFFF3D6).copy(alpha = 0.85f)
         val textPaint = android.graphics.Paint().apply {
-            color = android.graphics.Color.rgb(0x2C, 0x18, 0x0A)
+            color = android.graphics.Color.rgb(0x24, 0x11, 0x04)
             isAntiAlias = true
             typeface = android.graphics.Typeface.create(android.graphics.Typeface.SANS_SERIF, android.graphics.Typeface.BOLD)
             textAlign = android.graphics.Paint.Align.CENTER
         }
 
-        fun drawCenteredText(text: String, x: Float, y: Float, textSize: Float, isBold: Boolean = true, isItalic: Boolean = false) {
+        fun drawCenteredText(
+            text: String,
+            x: Float,
+            y: Float,
+            textSize: Float,
+            isBold: Boolean = true,
+            isItalic: Boolean = false,
+            withEngrave: Boolean = true
+        ) {
             if (textMeasurer != null) {
+                val weight = if (isBold) FontWeight.Black else FontWeight.Normal
+                val fontStyle = if (isItalic) androidx.compose.ui.text.font.FontStyle.Italic else androidx.compose.ui.text.font.FontStyle.Normal
+
+                if (withEngrave) {
+                    // Lớp bóng chạm khắc 3D viền gỗ (Engraved highlight)
+                    val highlightStyle = TextStyle(
+                        color = engraveLight,
+                        fontSize = textSize.sp,
+                        fontWeight = weight,
+                        fontStyle = fontStyle,
+                        fontFamily = FontFamily.SansSerif
+                    )
+                    val highlightLayout = textMeasurer.measure(text = text, style = highlightStyle)
+                    drawText(
+                        textLayoutResult = highlightLayout,
+                        topLeft = Offset(x - highlightLayout.size.width * 0.5f + 1.2f, y - highlightLayout.size.height * 0.5f + 1.5f)
+                    )
+                }
+
+                // Lớp chữ chính tương phản cao
                 val style = TextStyle(
                     color = coordColor,
                     fontSize = textSize.sp,
-                    fontWeight = if (isBold) FontWeight.Bold else FontWeight.Normal,
-                    fontStyle = if (isItalic) androidx.compose.ui.text.font.FontStyle.Italic else androidx.compose.ui.text.font.FontStyle.Normal,
+                    fontWeight = weight,
+                    fontStyle = fontStyle,
                     fontFamily = FontFamily.SansSerif
                 )
                 val layoutResult = textMeasurer.measure(text = text, style = style)
@@ -596,6 +626,16 @@ object IsometricBoard3DRenderer {
                     topLeft = Offset(x - layoutResult.size.width * 0.5f, y - layoutResult.size.height * 0.5f)
                 )
             } else {
+                if (withEngrave) {
+                    textPaint.color = android.graphics.Color.argb(200, 255, 243, 214)
+                    textPaint.textSize = textSize * 1.35f
+                    val tf = if (isBold) android.graphics.Typeface.create(android.graphics.Typeface.SANS_SERIF, android.graphics.Typeface.BOLD) else android.graphics.Typeface.create(android.graphics.Typeface.SANS_SERIF, android.graphics.Typeface.NORMAL)
+                    textPaint.typeface = tf
+                    val metrics = textPaint.fontMetrics
+                    val baseline = y - (metrics.ascent + metrics.descent) * 0.5f
+                    drawContext.canvas.nativeCanvas.drawText(text, x + 1.2f, baseline + 1.5f, textPaint)
+                }
+                textPaint.color = android.graphics.Color.rgb(0x24, 0x11, 0x04)
                 textPaint.textSize = textSize * 1.35f
                 val tf = when {
                     isBold && isItalic -> android.graphics.Typeface.create(android.graphics.Typeface.SANS_SERIF, android.graphics.Typeface.BOLD_ITALIC)
@@ -610,11 +650,12 @@ object IsometricBoard3DRenderer {
             }
         }
 
-        val botTextSize = (layout.outerBottomWidth * 0.016f).coerceIn(10f, 15f)
-        val topTextSize = (layout.outerTopWidth * 0.016f).coerceIn(8.5f, 13f)
+        // Tăng kích thước ký tự lên to rõ ràng, cân đối tuyệt đẹp
+        val botTextSize = (layout.outerBottomWidth * 0.028f).coerceIn(18f, 26f)
+        val topTextSize = (layout.outerTopWidth * 0.028f).coerceIn(14f, 22f)
 
         // CHỮ CÁI TỌA ĐỘ A..H DỌC VIỀN DƯỚI & TRÊN
-        val botY = (layout.innerBottomY + layout.outerBottomY) * 0.5f
+        val botY = layout.innerBottomY + (layout.outerBottomY - layout.innerBottomY) * 0.44f
         val topY = (layout.outerTopY + layout.innerTopY) * 0.5f
         for (col in 0..7) {
             val fileChar = (if (isBoardFlipped) 'H' - col else 'A' + col).toString()
@@ -641,14 +682,14 @@ object IsometricBoard3DRenderer {
             val innerRightX = layout.centerX + (layout.innerTopWidth + (layout.innerBottomWidth - layout.innerTopWidth) * v) * 0.5f
             val midRightX = (outerRightX + innerRightX) * 0.5f
 
-            val rowTextSize = (botTextSize * (0.82f + 0.18f * (row / 7f))).coerceIn(9f, 14f)
+            val rowTextSize = (botTextSize * (0.85f + 0.15f * (row / 7f))).coerceIn(16f, 24f)
             drawCenteredText(rankStr, midLeftX, ptLeft.y, rowTextSize, isBold = true)
             drawCenteredText(rankStr, midRightX, ptRight.y, rowTextSize, isBold = true)
         }
 
         // KHẮC CHỮ TRÊN GỜ CẠNH ĐỨNG PHÍA TRƯỚC (Front Wooden Lip)
-        val lipY = layout.outerBottomY + lipThickness * 0.54f
-        val lipTextSize = (layout.outerBottomWidth * 0.018f).coerceIn(11f, 16f)
+        val lipY = layout.outerBottomY + lipThickness * 0.52f
+        val lipTextSize = (layout.outerBottomWidth * 0.019f).coerceIn(12f, 17f)
 
         // Bên trái: levelLabel ("BEGINNER LEVEL")
         val leftX = layout.centerX - layout.outerBottomWidth * 0.28f

@@ -1592,40 +1592,42 @@ private fun ChessBoardView(
                         }
                     }
 
-                    // Tọa độ mép bàn cờ (1..8, a..h)
-                    val coordColor = if (isLight) Color(0xFF5A2408) else Color(0xFFDFC698)
+                    // Tọa độ mép bàn cờ (1..8, a..h): Kích thước lớn, nét đen đậm siêu rõ (FontWeight.Black) kèm bóng tương phản cao
+                    val coordColor = if (isLight) Color(0xFF2B1304) else Color(0xFFFFF2D1)
+                    val coordShadowColor = if (isLight) Color(0xFFFFF7E8).copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.75f)
+                    val shadowOffset = if (isLight) Offset(-1f, -1f) else Offset(1.5f, 1.5f)
+                    val coordFontSize = (sqSize * 0.24f).toSp()
+
                     if (screenCol == 0) {
                         val rankStr = (8 - boardRow).toString()
-                        val layoutResult = textMeasurer.measure(
-                            text = rankStr,
-                            style = TextStyle(
-                                color = coordColor,
-                                fontSize = (sqSize * 0.15f).toSp(),
-                                fontWeight = FontWeight.Bold
-                            )
+                        val textStyle = TextStyle(
+                            color = coordColor,
+                            fontSize = coordFontSize,
+                            fontWeight = FontWeight.Black
                         )
-                        drawText(
-                            textLayoutResult = layoutResult,
-                            topLeft = Offset(topLeft.x + sqSize * 0.06f, topLeft.y + sqSize * 0.04f)
-                        )
+                        val shadowStyle = textStyle.copy(color = coordShadowColor)
+                        val rankLayout = textMeasurer.measure(text = rankStr, style = textStyle)
+                        val shadowLayout = textMeasurer.measure(text = rankStr, style = shadowStyle)
+                        val rankPos = Offset(topLeft.x + sqSize * 0.07f, topLeft.y + sqSize * 0.05f)
+                        drawText(textLayoutResult = shadowLayout, topLeft = rankPos + shadowOffset)
+                        drawText(textLayoutResult = rankLayout, topLeft = rankPos)
                     }
                     if (screenRow == 7) {
                         val fileStr = ('a' + boardCol).toString()
-                        val layoutResult = textMeasurer.measure(
-                            text = fileStr,
-                            style = TextStyle(
-                                color = coordColor,
-                                fontSize = (sqSize * 0.15f).toSp(),
-                                fontWeight = FontWeight.Bold
-                            )
+                        val textStyle = TextStyle(
+                            color = coordColor,
+                            fontSize = coordFontSize,
+                            fontWeight = FontWeight.Black
                         )
-                        drawText(
-                            textLayoutResult = layoutResult,
-                            topLeft = Offset(
-                                topLeft.x + sqSize - layoutResult.size.width - sqSize * 0.06f,
-                                topLeft.y + sqSize - layoutResult.size.height - sqSize * 0.03f
-                            )
+                        val shadowStyle = textStyle.copy(color = coordShadowColor)
+                        val fileLayout = textMeasurer.measure(text = fileStr, style = textStyle)
+                        val shadowLayout = textMeasurer.measure(text = fileStr, style = shadowStyle)
+                        val filePos = Offset(
+                            topLeft.x + sqSize - fileLayout.size.width - sqSize * 0.07f,
+                            topLeft.y + sqSize - fileLayout.size.height - sqSize * 0.05f
                         )
+                        drawText(textLayoutResult = shadowLayout, topLeft = filePos + shadowOffset)
+                        drawText(textLayoutResult = fileLayout, topLeft = filePos)
                     }
                 }
             }

@@ -40,7 +40,10 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -634,6 +637,7 @@ private fun LessonBoardView(
             }
     ) {
         val boardSide = minOf(maxWidth, maxHeight)
+        val textMeasurer = rememberTextMeasurer()
 
         Canvas(
             modifier = Modifier
@@ -656,6 +660,51 @@ private fun LessonBoardView(
                     val isLight = (r + c) % 2 == 0
                     val topLeft = Offset(c * squareSize, r * squareSize)
                     drawRichWoodSquare(topLeft, squareSize, isLight)
+                }
+            }
+
+            // 1.5. VẼ KÝ TỰ TỌA ĐỘ HÀNG (8..1) VÀ CỘT (a..h) TO RÕ RÀNG
+            for (r in 0..7) {
+                for (c in 0..7) {
+                    val isLight = (r + c) % 2 == 0
+                    val topLeft = Offset(c * squareSize, r * squareSize)
+                    val textColor = if (isLight) Color(0xFF2B1304) else Color(0xFFFFF2D1)
+                    val shadowColor = if (isLight) Color(0xFFFFF7E8).copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.75f)
+                    val shadowOffset = if (isLight) Offset(-1f, -1f) else Offset(1.5f, 1.5f)
+                    val coordFontSize = (squareSize * 0.24f).toSp()
+
+                    if (c == 0) {
+                        val rankStr = (8 - r).toString()
+                        val textStyle = TextStyle(
+                            color = textColor,
+                            fontSize = coordFontSize,
+                            fontWeight = FontWeight.Black
+                        )
+                        val shadowStyle = textStyle.copy(color = shadowColor)
+                        val rankLayout = textMeasurer.measure(text = rankStr, style = textStyle)
+                        val shadowLayout = textMeasurer.measure(text = rankStr, style = shadowStyle)
+                        val rankPos = Offset(topLeft.x + squareSize * 0.07f, topLeft.y + squareSize * 0.05f)
+                        drawText(textLayoutResult = shadowLayout, topLeft = rankPos + shadowOffset)
+                        drawText(textLayoutResult = rankLayout, topLeft = rankPos)
+                    }
+
+                    if (r == 7) {
+                        val fileStr = ('a' + c).toString()
+                        val textStyle = TextStyle(
+                            color = textColor,
+                            fontSize = coordFontSize,
+                            fontWeight = FontWeight.Black
+                        )
+                        val shadowStyle = textStyle.copy(color = shadowColor)
+                        val fileLayout = textMeasurer.measure(text = fileStr, style = textStyle)
+                        val shadowLayout = textMeasurer.measure(text = fileStr, style = shadowStyle)
+                        val filePos = Offset(
+                            topLeft.x + squareSize - fileLayout.size.width - squareSize * 0.07f,
+                            topLeft.y + squareSize - fileLayout.size.height - squareSize * 0.05f
+                        )
+                        drawText(textLayoutResult = shadowLayout, topLeft = filePos + shadowOffset)
+                        drawText(textLayoutResult = fileLayout, topLeft = filePos)
+                    }
                 }
             }
 
