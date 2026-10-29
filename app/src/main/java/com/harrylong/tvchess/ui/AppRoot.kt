@@ -454,6 +454,16 @@ fun HomeScreen(
                 textAlign = TextAlign.Center
             )
         }
+
+        // Góc nhỏ dưới màn hình hiển thị version và tác giả
+        Text(
+            text = "v2.0 • Harry (longkhtn1990@gmail.com)",
+            fontSize = if (isPhone || isShortScreen) 9.sp else 11.sp,
+            color = Color(0xFF64748B),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = if (isPhone || isShortScreen) 16.dp else 24.dp, bottom = 6.dp)
+        )
     }
 }
 
